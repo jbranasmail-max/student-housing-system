@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب | السكن الطلابي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Changa:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="auth-body">
+    <main class="auth-shell">
+        <section class="auth-card auth-card-wide">
+            <h1>إنشاء حساب</h1>
+            <p>أنشئ حسابك حسب دورك في النظام.</p>
+            <p class="auth-note">حساب المدير لا يُنشأ من هذه الصفحة ويُدار فقط من الإدارة العليا.</p>
+            {% if messages %}
+                {% for message in messages %}
+                <p class="auth-msg">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="auth-grid">
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}">اسم المستخدم</label>
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">البريد الإلكتروني</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.full_name.id_for_label }}">الاسم الكامل</label>
+                        {{ form.full_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.phone.id_for_label }}">رقم الهاتف</label>
+                        {{ form.phone }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.role.id_for_label }}">نوع الحساب</label>
+                        {{ form.role }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.birth_date.id_for_label }}">تاريخ الميلاد (للطالب)</label>
+                        {{ form.birth_date }}
+                        {{ form.birth_date.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.gender.id_for_label }}">الجنس (للطالب)</label>
+                        {{ form.gender }}
+                        {{ form.gender.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.address.id_for_label }}">العنوان (للطالب)</label>
+                        {{ form.address }}
+                    </div>
+                    <div class="form-group role-staff-field">
+                        <label for="{{ form.staff_role_title.id_for_label }}">المسمى الوظيفي (للموظف)</label>
+                        {{ form.staff_role_title }}
+                        {{ form.staff_role_title.errors }}
+                    </div>
+                    <div class="form-group role-staff-field">
+                        <label for="{{ form.hire_date.id_for_label }}">تاريخ التعيين (للموظف)</label>
+                        {{ form.hire_date }}
+                        {{ form.hire_date.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.password1.id_for_label }}">كلمة المرور</label>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.password2.id_for_label }}">تأكيد كلمة المرور</label>
+                        {{ form.password2 }}
+                    </div>
+                </div>
+                <button type="submit" class="auth-btn auth-btn-primary auth-btn-block">إنشاء الحساب</button>
+            </form>
+            <a class="auth-link" href="{% url 'accounts:login' %}">لديك حساب؟ تسجيل الدخول</a>
+        </section>
+    </main>
+    <script>
+        const roleSelect = document.getElementById("id_role");
+        const studentFields = [
+            "id_birth_date",
+            "id_gender",
+            "id_address",
+        ];
+        const staffFields = [
+            "id_staff_role_title",
+            "id_hire_date",
+        ];
+
+        function toggleRoleFields() {
+            const role = roleSelect?.value;
+            studentFields.forEach((id) => {
+                const field = document.getElementById(id);
+                if (!field) return;
+                const group = field.closest(".form-group");
+                group.style.display = role === "student" ? "block" : "none";
+            });
+            staffFields.forEach((id) => {
+                const field = document.getElementById(id);
+                if (!field) return;
+                const group = field.closest(".form-group");
+                group.style.display = role === "staff" ? "block" : "none";
+            });
+        }
+
+        roleSelect?.addEventListener("change", toggleRoleFields);
+        toggleRoleFields();
+    </script>
+</body>
+</html>

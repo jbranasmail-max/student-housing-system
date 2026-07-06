@@ -1,0 +1,51 @@
+<!-- Complaint Modal -->
+<div id="complaintModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-exclamation-circle"></i> <span id="complaintModalTitle">إضافة شكوى</span></h2>
+            <span class="close" onclick="closeModal('complaintModal')">&times;</span>
+        </div>
+        <form id="complaintForm">
+            <input type="hidden" id="complaintId" name="complaintId">
+            
+            <div class="form-group">
+                <label>الطالب</label>
+                <select name="student" id="complaintStudent" required>
+                    <option value="">اختر الطالب...</option>
+                    {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>الموظف المسؤول (اختياري)</label>
+                <select name="staff" id="complaintStaff">
+                    <option value="">يُحدد لاحقًا</option>
+                    {% for member in staff_members %}
+                    <option value="{{ member.id }}">{{ member.name }} ({{ member.role.role_name }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>وصف الشكوى</label>
+                <textarea name="description" id="complaintDescription" required rows="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>الحالة</label>
+                <select name="status" id="complaintStatus" required>
+                    <option value="Pending">في الانتظار</option>
+                    <option value="In Progress">قيد المعالجة</option>
+                    <option value="Resolved">تم الحل</option>
+                </select>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('complaintModal')">إلغاء</button>
+                <button type="submit" class="btn btn-primary">حفظ</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام السكن الطلابي | الواجهة الرئيسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body class="landing-body">
+    <header class="landing-header">
+        <div class="landing-container nav-row">
+            <div class="brand">
+                <i class="fas fa-city"></i>
+                <span>نظام إدارة السكن الطلابي</span>
+            </div>
+            <div class="hero-actions">
+                <a href="{% url 'accounts:login' %}" class="landing-btn landing-btn-primary">تسجيل الدخول</a>
+                <a href="{% url 'accounts:register' %}" class="landing-btn landing-btn-ghost">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="landing-container hero-grid">
+                <div class="hero-copy reveal">
+                    <span class="hero-kicker">منصة موحدة</span>
+                    <h1>إدارة السكن الطلابي بثقة، وبدون كشف بيانات شخصية</h1>
+                    <p>
+                        هذه الواجهة تعرض معلومات عامة فقط عن المشروع. كل البيانات الشخصية
+                        لا تظهر إلا بعد تسجيل الدخول وبحسب صلاحيات المستخدم.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="{% url 'accounts:login' %}" class="landing-btn landing-btn-primary">ابدأ من البوابة</a>
+                        <a href="{% url 'accounts:register' %}" class="landing-btn landing-btn-ghost">تسجيل طالب/موظف</a>
+                    </div>
+                </div>
+                <div class="hero-visual reveal">
+                    <div class="glass-panel">
+                        <h3>ماذا يميز النظام؟</h3>
+                        <ul>
+                            <li>تحكم صلاحيات دقيق حسب الدور</li>
+                            <li>فصل واضح بين البيانات العامة والبيانات الحساسة</li>
+                            <li>تتبع الحجوزات والمدفوعات والشكاوى والصيانة</li>
+                            <li>تجربة موحدة للمدير والموظف والطالب</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="metrics">
+            <div class="landing-container">
+                <h2 class="section-title reveal">مؤشرات عامة عن المشروع</h2>
+                <p class="section-note reveal">
+                    جميع الأرقام التالية مجمعة وإجمالية، ولا تتضمن أي بيانات تعريف شخصية.
+                </p>
+                <div class="metrics-grid">
+                    <article class="metric-card reveal"><h3>{{ total_students }}</h3><p>عدد الطلاب</p></article>
+                    <article class="metric-card reveal"><h3>{{ total_staff }}</h3><p>عدد الموظفين النشطين</p></article>
+                    <article class="metric-card reveal"><h3>{{ total_buildings }}</h3><p>عدد المباني</p></article>
+                    <article class="metric-card reveal"><h3>{{ total_rooms }}</h3><p>عدد الغرف</p></article>
+                    <article class="metric-card reveal"><h3>{{ available_rooms }}</h3><p>الغرف المتاحة</p></article>
+                    <article class="metric-card reveal"><h3>{{ active_bookings }}</h3><p>الحجوزات النشطة</p></article>
+                    <article class="metric-card reveal"><h3>{{ resolved_complaints }}</h3><p>الشكاوى المحلولة</p></article>
+                    <article class="metric-card reveal"><h3>{{ completed_maintenance }}</h3><p>طلبات الصيانة المكتملة</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="modules">
+            <div class="landing-container">
+                <h2 class="section-title reveal">أقسام المنصة</h2>
+                <p class="section-note reveal">كل قسم مصمم لرحلة تشغيلية واضحة داخل السكن الطلابي.</p>
+                <div class="module-grid">
+                    <article class="module-card reveal">
+                        <i class="fas fa-building"></i>
+                        <h3>المباني والغرف</h3>
+                        <p>إدارة الهيكل السكني، السعة، والإتاحة بشكل مباشر.</p>
+                    </article>
+                    <article class="module-card reveal">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>الحجوزات</h3>
+                        <p>متابعة التسكين وحالات الحجز مع منع التضارب.</p>
+                    </article>
+                    <article class="module-card reveal">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>المدفوعات</h3>
+                        <p>توثيق الدفعات وطرق الدفع وربطها بالطالب.</p>
+                    </article>
+                    <article class="module-card reveal">
+                        <i class="fas fa-tools"></i>
+                        <h3>الصيانة والشكاوى</h3>
+                        <p>إدارة البلاغات والصيانة مع متابعة الحالة والأولوية.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy">
+            <div class="landing-container privacy-box reveal">
+                <h2>سياسة الخصوصية داخل المنصة</h2>
+                <p>
+                    البيانات الحساسة مثل رقم الهاتف، البريد، العنوان، تفاصيل السكن، والمدفوعات الفردية
+                    لا تُعرض في الواجهة العامة. الوصول إليها يتطلب تسجيل دخول صالح، ثم يتم تقييده حسب الدور.
+                </p>
+                <a href="{% url 'accounts:login' %}" class="landing-btn landing-btn-primary">الدخول إلى الواجهة الداخلية</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+    </script>
+</body>
+</html>

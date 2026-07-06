@@ -1,0 +1,56 @@
+<!-- Assignment Modal -->
+<div id="assignmentModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-key"></i> <span id="assignmentModalTitle">إضافة حجز</span></h2>
+            <span class="close" onclick="closeModal('assignmentModal')">&times;</span>
+        </div>
+        <form id="assignmentForm">
+            <input type="hidden" id="assignmentId" name="assignmentId">
+            
+            <div class="form-group">
+                <label>الطالب</label>
+                <select name="student" id="assignmentStudent" required>
+                    <option value="">اختر الطالب...</option>
+                    {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>الغرفة</label>
+                <select name="room" id="assignmentRoom" required>
+                    <option value="">اختر الغرفة...</option>
+                    {% for room in rooms %}
+                    <option value="{{ room.id }}">{{ room.building.name }} - {{ room.room_number }} (المتاح: {{ room.available_beds }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>تاريخ البدء</label>
+                <input type="date" name="start_date" id="assignmentStartDate" required>
+            </div>
+            
+            <div class="form-group">
+                <label>تاريخ الانتهاء (اختياري)</label>
+                <input type="date" name="end_date" id="assignmentEndDate">
+            </div>
+            
+            <div class="form-group">
+                <label>الحالة</label>
+                <select name="status" id="assignmentStatus" required>
+                    <option value="Active">نشط</option>
+                    <option value="Completed">مكتمل</option>
+                    <option value="Cancelled">ملغي</option>
+                </select>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('assignmentModal')">إلغاء</button>
+                <button type="submit" class="btn btn-primary">حفظ</button>
+            </div>
+        </form>
+    </div>
+</div>

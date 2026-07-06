@@ -1,0 +1,22 @@
+<!-- Payment Method Modal -->
+<div id="paymentMethodModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-wallet"></i> <span id="paymentMethodModalTitle">إضافة طريقة دفع</span></h2>
+            <span class="close" onclick="closeModal('paymentMethodModal')">&times;</span>
+        </div>
+        <form id="paymentMethodForm">
+            <input type="hidden" id="paymentMethodId" name="paymentMethodId">
+
+            <div class="form-group">
+                <label>اسم طريقة الدفع</label>
+                <input type="text" name="method_name" id="paymentMethodName" required>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('paymentMethodModal')">إلغاء</button>
+                <button type="submit" class="btn btn-primary">حفظ</button>
+            </div>
+        </form>
+    </div>
+</div>

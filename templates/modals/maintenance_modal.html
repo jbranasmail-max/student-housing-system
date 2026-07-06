@@ -1,0 +1,65 @@
+<!-- Maintenance Modal -->
+<div id="maintenanceModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-tools"></i> <span id="maintenanceModalTitle">إضافة طلب صيانة</span></h2>
+            <span class="close" onclick="closeModal('maintenanceModal')">&times;</span>
+        </div>
+        <form id="maintenanceForm">
+            <input type="hidden" id="maintenanceId" name="maintenanceId">
+            
+            <div class="form-group">
+                <label>الغرفة</label>
+                <select name="room" id="maintenanceRoom" required>
+                    <option value="">اختر الغرفة...</option>
+                    {% for room in rooms %}
+                    <option value="{{ room.id }}">{{ room.building.name }} - {{ room.room_number }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>الموظف المسؤول (اختياري)</label>
+                <select name="staff" id="maintenanceStaff">
+                    <option value="">يُحدد لاحقًا</option>
+                    {% for member in staff_members %}
+                    <option value="{{ member.id }}">{{ member.name }} ({{ member.role.role_name }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>وصف العطل/المشكلة</label>
+                <textarea name="description" id="maintenanceDescription" required rows="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>التاريخ المجدول</label>
+                <input type="date" name="scheduled_date" id="maintenanceScheduledDate">
+            </div>
+
+            <div class="form-group">
+                <label>الأولوية</label>
+                <select name="priority" id="maintenancePriority" required>
+                    <option value="Low">منخفضة</option>
+                    <option value="Medium">متوسطة</option>
+                    <option value="High">عالية</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>الحالة</label>
+                <select name="status" id="maintenanceStatus" required>
+                    <option value="Pending">في الانتظار</option>
+                    <option value="In Progress">قيد التنفيذ</option>
+                    <option value="Completed">مكتمل</option>
+                </select>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('maintenanceModal')">إلغاء</button>
+                <button type="submit" class="btn btn-primary">حفظ</button>
+            </div>
+        </form>
+    </div>
+</div>

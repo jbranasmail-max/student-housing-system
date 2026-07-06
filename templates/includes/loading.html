@@ -1,0 +1,19 @@
+<div id="loading-screen">
+    <div class="loader"></div>
+    <h2>جاري تحميل النظام...</h2>
+</div>
+
+<script>
+// Hide loading screen after page loads
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            setTimeout(function() {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
+    }, 500);
+});
+</script>

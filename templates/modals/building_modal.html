@@ -1,0 +1,37 @@
+<!-- Building Modal -->
+<div id="buildingModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-building"></i> <span id="buildingModalTitle">إضافة مبنى</span></h2>
+            <span class="close" onclick="closeModal('buildingModal')">&times;</span>
+        </div>
+        <form id="buildingForm">
+            <input type="hidden" id="buildingId" name="buildingId">
+            
+            <div class="form-group">
+                <label>اسم المبنى</label>
+                <input type="text" name="name" id="buildingName" required>
+            </div>
+            
+            <div class="form-group">
+                <label>الموقع</label>
+                <input type="text" name="location" id="buildingLocation">
+            </div>
+            
+ <div class="form-group">
+                <label>عدد الطوابق</label>
+                <input type="number" name="total_floors" id="buildingFloors" required min="1">
+            </div>
+            
+            <div class="form-group">
+                <label>المسؤول</label>
+                <input type="text" name="admin" id="buildingAdmin">
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('buildingModal')">إلغاء</button>
+                <button type="submit" class="btn btn-primary">حفظ</button>
+            </div>
+        </form>
+    </div>
+</div>
